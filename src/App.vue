@@ -1,6 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-content>
+      <Header />
       <v-progress-linear :indeterminate="true" v-if="loaderStatus"></v-progress-linear>
       <v-container fluid fill-height>
         <router-view />
@@ -11,9 +12,13 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Header from './views/Header'
 
 export default {
   name: 'App',
+  components: {
+    Header
+  },
   computed: mapGetters(['loaderStatus'])
 }
 </script>

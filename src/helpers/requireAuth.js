@@ -1,8 +1,8 @@
-import localStore from "store";
+import store from "../store";
 
 export default (to, from, next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
-    if (!localStore.get("jwt")) {
+    if (!store.getters.loggedIn) {
       next({
         name: "login"
       });
@@ -10,7 +10,7 @@ export default (to, from, next) => {
       next();
     }
   } else if (to.matched.some(record => record.meta.requireVisitor)) {
-    if (localStore.get("jwt")) {
+    if (store.getters.loggedIn) {
       next({
         name: "home"
       });

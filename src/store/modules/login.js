@@ -19,8 +19,9 @@ const getters = {
 };
 
 const actions = {
-  login({ commit }, credentials) {
-    api.login(credentials.email, credentials.password)
+  async login({ commit }, credentials) {
+    await api
+      .login(credentials.email, credentials.password)
       .then(({ data }) => {
         const error = get(data, "error");
         if (error) {
@@ -33,8 +34,8 @@ const actions = {
         }
 
         Promise.resolve(localStore.set("jwt", accessToken))
-          .then(() => { 
-            commit("signInUser", user);
+          .then(() => {
+            commit("signInUser", { user, accessToken });
             router.push({ name: "home" });
           })
           .catch(() => {});
@@ -44,11 +45,19 @@ const actions = {
           error: "Invalid username/password"
         });
       });
+  },
+  async signOutUser({ commit }) {
+    commit("signOutUser");
   }
 };
 
 const mutations = {
-  signInUser: (state, user) => (state.user = user),
+  signInUser: (state, payload) => {
+    (state.user = payload.user), (state.error = null), (state.token = payload.accessToken);
+  },
+  signOutUser: state => {
+    (state.user = null), (state.token = null);
+  },
   saveError: (state, payload) => (state.error = payload.error)
 };
 
