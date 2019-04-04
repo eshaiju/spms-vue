@@ -10,7 +10,7 @@ export default (to, from, next) => {
     } else {
       const token = localStore.get("jwt");
       if (!store.loggedIn && !(token === undefined)) {
-        store.dispatch("refetchUser");
+        store.dispatch("refetchUser", token);
       }
       next();
     }

@@ -12,7 +12,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Header from './views/Header'
+import Header from './components/Header'
 
 export default {
   name: 'App',

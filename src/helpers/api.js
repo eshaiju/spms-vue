@@ -20,9 +20,9 @@ const api = {
       })
       .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err)),
-  validate_token: () =>
+  validate_token: token =>
     axios
-      .post("api/v1/validate_token", {})
+      .post("api/v1/validate_token", {}, { Authorization: `bearer ${token}` })
       .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err))
 };
