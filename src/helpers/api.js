@@ -5,13 +5,24 @@ const token = localStore.get("jwt");
 
 axios.defaults.xsrfCookieName = "CSRF-TOKEN";
 axios.defaults.xsrfHeaderName = "X-CSRF-Token";
-axios.defaults.baseURL = "https://spms-rails-staging.herokuapp.com/api/v1";
-axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.headers.common = {
+  Authorization: `bearer ${token}`
+};
 
 const api = {
   login: (email, password) =>
     axios
-      .post("/login", { email, password, password_confirmation: password })
+      .post("api/v1/login", {
+        email,
+        password,
+        password_confirmation: password
+      })
+      .then(res => Promise.resolve(res))
+      .catch(err => Promise.reject(err)),
+  validate_token: () =>
+    axios
+      .post("api/v1/validate_token", {})
       .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err))
 };

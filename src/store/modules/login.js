@@ -13,6 +13,9 @@ const getters = {
   loggedIn(state) {
     return state.token != null;
   },
+  user(state) {
+    return state.user;
+  },
   loginError(state) {
     return state.error;
   }
@@ -48,12 +51,21 @@ const actions = {
   },
   async signOutUser({ commit }) {
     commit("signOutUser");
+  },
+  async refetchUser({ commit }) {
+    await api.validate_token().then(({ data }) => {
+      const user = get(data, "user");
+      const accessToken = localStore.get("jwt");
+      commit("signInUser", { user, accessToken });
+    });
   }
 };
 
 const mutations = {
   signInUser: (state, payload) => {
-    (state.user = payload.user), (state.error = null), (state.token = payload.accessToken);
+    (state.user = payload.user),
+      (state.error = null),
+      (state.token = payload.accessToken);
   },
   signOutUser: state => {
     (state.user = null), (state.token = null);
