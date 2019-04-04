@@ -3,21 +3,21 @@ const state = {
 };
 
 const getters = {
-  loaderStatus: (state) => state.loading
+  loaderStatus: state => state.loading
 };
 
 const actions = {
   startLoader({ commit }) {
-    commit('startLoader');
+    commit("startLoader");
   },
   stopLoader({ commit }) {
-    commit('stopLoader');
+    commit("stopLoader");
   }
 };
 
 const mutations = {
-  startLoader: (state) => state.loading = true,
-  stopLoader: (state) => state.loading = false
+  startLoader: state => (state.loading = true),
+  stopLoader: state => (state.loading = false)
 };
 
 export default {
@@ -25,4 +25,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

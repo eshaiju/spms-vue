@@ -12,12 +12,18 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: "/login",
       name: "login",
-      component: Login
+      component: Login,
+      meta: {
+        requireVisitor: true
+      }
     }
   ]
 });

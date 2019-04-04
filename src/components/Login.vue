@@ -7,9 +7,23 @@
             <v-toolbar-title>Login form</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-form >
-              <v-text-field prepend-icon="person" name="login" label="Login" type="text" v-model="email"></v-text-field>
-              <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" v-model="password"></v-text-field>
+            <v-alert :value="true" type="error" v-if="loginError">{{loginError}}</v-alert>
+            <v-form>
+              <v-text-field
+                prepend-icon="person"
+                name="login"
+                label="Login"
+                type="text"
+                v-model="email"
+              ></v-text-field>
+              <v-text-field
+                id="password"
+                prepend-icon="lock"
+                name="password"
+                label="Password"
+                type="password"
+                v-model="password"
+              ></v-text-field>
             </v-form>
           </v-card-text>
           <v-card-actions>
@@ -23,6 +37,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "login",
   data() {
@@ -31,13 +47,13 @@ export default {
       password: ""
     };
   },
+  computed: mapGetters(["loginError"]),
   methods: {
     login() {
-      this.$store
-        .dispatch("login", {
-          email: this.email,
-          password: this.password
-        })
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password
+      });
     }
   }
 };

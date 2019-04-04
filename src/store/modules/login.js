@@ -1,14 +1,22 @@
-import api from '../../helpers/api';
-import localStore from 'store';
-import { get } from 'lodash'
+import api from "../../helpers/api";
+import localStore from "store";
+import { get } from "lodash";
 import router from "../../router";
 
 const state = {
   user: null,
-  error: null
+  error: null,
+  token: localStore.get("jwt") || null
 };
 
-const getters = {};
+const getters = {
+  loggedIn(state) {
+    return state.token != null;
+  },
+  loginError(state) {
+    return state.error;
+  }
+};
 
 const actions = {
   login({ commit }, credentials) {
@@ -28,11 +36,12 @@ const actions = {
           .then(() => { 
             commit("signInUser", user);
             router.push({ name: "home" });
-          });
+          })
+          .catch(() => {});
       })
-      .catch(error => {
-        commit('saveError', {
-          error: 'Invalid username/password'
+      .catch(() => {
+        commit("saveError", {
+          error: "Invalid username/password"
         });
       });
   }
@@ -48,4 +57,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};
