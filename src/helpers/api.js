@@ -27,7 +27,7 @@ const api = {
       .catch(err => Promise.reject(err)),
   dashboard: () =>
     axios
-      .get("api/v1/dashboard", {})
+      .get("api/v1/dashboard", {}, { Authorization: `bearer ${token}` })
       .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err))
 };

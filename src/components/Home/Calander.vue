@@ -1,10 +1,7 @@
 <template>
-  <v-flex
-    sm12
-    xs12
-    class="text-sm-left text-xs-center"
+  <v-flex sm12 xs12 class="text-sm-left text-xs-center"
   >
-    <v-sheet>
+    <v-sheet >
       <full-calendar :events="events" ref="calendar" :config="config"></full-calendar>
     </v-sheet>
   </v-flex>

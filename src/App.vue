@@ -6,19 +6,28 @@
       <v-container fluid>
         <router-view />
       </v-container>
+      <Footer />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Header from './components/Header'
+import Header from './components/Shared/Header'
+import Footer from './components/Shared/Footer'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Footer
   },
   computed: mapGetters(['loaderStatus'])
 }
 </script>
+
+<style >
+  .container {
+    min-height: 500px;
+  }
+</style>

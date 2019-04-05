@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style scopped>
+<style scoped>
   .v-card__title{
     background-color: #00b5ad;
     color: white;

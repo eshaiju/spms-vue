@@ -59,3 +59,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .v-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+</style>
