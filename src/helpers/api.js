@@ -5,7 +5,7 @@ const token = localStore.get("jwt");
 
 axios.defaults.xsrfCookieName = "CSRF-TOKEN";
 axios.defaults.xsrfHeaderName = "X-CSRF-Token";
-axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 axios.defaults.headers.common = {
   Authorization: `bearer ${token}`
 };
