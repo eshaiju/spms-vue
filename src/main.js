@@ -1,4 +1,5 @@
 import Vue from "vue";
+import VeeValidate from "vee-validate";
 import "./plugins/vuetify";
 import App from "./App.vue";
 import router from "./router";
@@ -13,6 +14,7 @@ interceptorsSetup();
 router.beforeEach(requireAuth);
 
 Vue.use(FullCalendar);
+Vue.use(VeeValidate);
 
 new Vue({
   router,

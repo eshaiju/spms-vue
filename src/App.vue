@@ -30,4 +30,8 @@ export default {
   .container {
     min-height: 500px;
   }
+  .is-danger {
+    border-color: #f22435 !important;
+    color: red !important;
+  }
 </style>
