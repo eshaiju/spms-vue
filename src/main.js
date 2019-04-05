@@ -5,10 +5,14 @@ import router from "./router";
 import requireAuth from "./helpers/requireAuth";
 import store from "./store";
 import interceptorsSetup from "./helpers/interceptors";
+import FullCalendar from "vue-full-calendar";
+import "fullcalendar/dist/fullcalendar.css";
 
 Vue.config.productionTip = false;
 interceptorsSetup();
 router.beforeEach(requireAuth);
+
+Vue.use(FullCalendar);
 
 new Vue({
   router,

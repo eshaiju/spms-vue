@@ -1,13 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import login from './modules/login'
-import loader from './modules/loader'
+import Vue from "vue";
+import Vuex from "vuex";
+import login from "./modules/login";
+import loader from "./modules/loader";
+import Dashboard from "./modules/Dashboard";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     loader,
-    login
+    login,
+    Dashboard
   }
-})
+});

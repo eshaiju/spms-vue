@@ -3,7 +3,7 @@
     <v-content>
       <Header />
       <v-progress-linear :indeterminate="true" v-if="loaderStatus"></v-progress-linear>
-      <v-container fluid fill-height>
+      <v-container fluid>
         <router-view />
       </v-container>
     </v-content>

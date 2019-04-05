@@ -24,6 +24,11 @@ const api = {
     axios
       .post("api/v1/validate_token", {}, { Authorization: `bearer ${token}` })
       .then(res => Promise.resolve(res))
+      .catch(err => Promise.reject(err)),
+  dashboard: () =>
+    axios
+      .get("api/v1/dashboard", {})
+      .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err))
 };
 
