@@ -8,6 +8,7 @@ import store from "./store";
 import interceptorsSetup from "./helpers/interceptors";
 import FullCalendar from "vue-full-calendar";
 import "fullcalendar/dist/fullcalendar.css";
+import "./assets/css/style.css";
 
 Vue.config.productionTip = false;
 router.beforeEach(requireAuth);
