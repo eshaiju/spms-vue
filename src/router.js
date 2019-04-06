@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Tickets from "./views/Tickets.vue";
+import TicketActivityLogs from "./views/TicketActivityLogs.vue";
 
 Vue.use(Router);
 
@@ -22,6 +23,14 @@ export default new Router({
       path: "/tickets",
       name: "tickets",
       component: Tickets,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/activity_logs",
+      name: "activity_logs",
+      component: TicketActivityLogs,
       meta: {
         requireAuth: true
       }
