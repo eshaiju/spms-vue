@@ -21,6 +21,12 @@ const actions = {
     await api.deleteTicketActivityLog(id).then(() => {
       commit("removeTicketActivityLog", id);
     });
+  },
+  async saveTicketActivity({ commit }, ticket_activity_log) {
+    await api.createTicketActivityLog(ticket_activity_log).then(({ data }) => {
+      const { ticket_activity_log } = data;
+      commit("pushToTicketActivityLogs", ticket_activity_log);
+    });
   }
 };
 
@@ -32,6 +38,11 @@ const mutations = {
       val => val.id !== id
     );
     state.ticket_activity_logs = { data: [...newState] };
+  },
+  pushToTicketActivityLogs: (state, payload) => {
+    state.ticket_activity_logs = {
+      data: [payload.data, ...state.ticket_activity_logs.data]
+    };
   }
 };
 
