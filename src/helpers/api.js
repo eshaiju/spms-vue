@@ -39,6 +39,11 @@ const api = {
     axios
       .get("api/v1/dashboard", {}, { Authorization: `bearer ${token}` })
       .then(res => Promise.resolve(res))
+      .catch(err => Promise.reject(err)),
+  tickets: user =>
+    axios
+      .get("api/v1/tickets", { params: { assigned_user_id: user.id } })
+      .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err))
 };
 

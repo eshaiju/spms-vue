@@ -1,3 +1,5 @@
+import api from "../../helpers/api";
+
 const state = {
   tickets: []
 };
@@ -8,7 +10,14 @@ const getters = {
   }
 };
 
-const actions = {};
+const actions = {
+  async fetchTickets({ commit }, user) {
+    await api.tickets(user).then(({ data }) => {
+      const { tickets } = data;
+      commit("addTickets", tickets);
+    });
+  }
+};
 
 const mutations = {
   addTickets: (state, payload) => (state.tickets = payload)
