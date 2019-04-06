@@ -3,7 +3,7 @@
     <v-content>
       <Header />
       <v-progress-linear :indeterminate="true" v-if="loaderStatus"></v-progress-linear>
-      <v-container fluid>
+      <v-container fluid >
         <router-view />
       </v-container>
       <Footer />
@@ -26,12 +26,8 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
   .container {
     min-height: 500px;
-  }
-  .is-danger {
-    border-color: #f22435 !important;
-    color: red !important;
   }
 </style>
