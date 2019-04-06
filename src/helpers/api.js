@@ -44,6 +44,11 @@ const api = {
     axios
       .get("api/v1/tickets", { params: { assigned_user_id: user.id } })
       .then(res => Promise.resolve(res))
+      .catch(err => Promise.reject(err)),
+  deleteTicket: id =>
+    axios
+      .delete(`api/v1/tickets/${id}`)
+      .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err))
 };
 

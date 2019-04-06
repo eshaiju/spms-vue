@@ -32,6 +32,8 @@
 </template>
 
 <script>
+  import { mapActions } from "vuex";
+
   export default {
     name: 'TicketList',
     props: ['tickets'],
@@ -50,10 +52,11 @@
       }
     },
     methods: {
+      ...mapActions(['deleteTicket']),
       editItem (id) {
       },
       deleteItem (id) {
-        confirm('Are you sure you want to delete this item?')
+        confirm('Are you sure you want to delete this ticket?') && this.deleteTicket(id)
       },
 
     }

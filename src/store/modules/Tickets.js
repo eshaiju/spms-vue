@@ -16,11 +16,20 @@ const actions = {
       const { tickets } = data;
       commit("addTickets", tickets);
     });
+  },
+  async deleteTicket({ commit }, id) {
+    await api.deleteTicket(id).then(() => {
+      commit("removeTicket", id);
+    });
   }
 };
 
 const mutations = {
-  addTickets: (state, payload) => (state.tickets = payload)
+  addTickets: (state, payload) => (state.tickets = payload),
+  removeTicket: (state, id) => {
+    const newState = state.tickets.data.filter(val => val.id !== id);
+    state.tickets = { data: [...newState] };
+  }
 };
 
 export default {
