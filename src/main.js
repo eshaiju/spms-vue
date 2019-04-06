@@ -10,9 +10,8 @@ import FullCalendar from "vue-full-calendar";
 import "fullcalendar/dist/fullcalendar.css";
 
 Vue.config.productionTip = false;
-interceptorsSetup();
 router.beforeEach(requireAuth);
-
+interceptorsSetup();
 Vue.use(FullCalendar);
 Vue.use(VeeValidate);
 

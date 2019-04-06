@@ -8,11 +8,15 @@ export default (to, from, next) => {
         name: "login"
       });
     } else {
-      const token = localStore.get("jwt");
-      if (!store.loggedIn && !(token === undefined)) {
-        store.dispatch("refetchUser", token);
+      if (!store.getters.user && !(localStore.get("jwt") === undefined)) {
+        Promise.resolve(
+          store.dispatch("refetchUser", localStore.get("jwt"))
+        ).then(() => {
+          next();
+        });
+      } else {
+        next();
       }
-      next();
     }
   } else if (to.matched.some(record => record.meta.requireVisitor)) {
     if (store.getters.loggedIn) {

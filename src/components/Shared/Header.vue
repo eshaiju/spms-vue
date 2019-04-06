@@ -1,5 +1,6 @@
 <template>
   <v-toolbar dark color="primary">
+    <v-toolbar-side-icon class="hidden-sm-and-up"></v-toolbar-side-icon>
     <v-toolbar-items>
       <v-btn
         flat @click="('/')"
