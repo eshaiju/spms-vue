@@ -1,14 +1,24 @@
 import axios from "axios";
 import localStore from "store";
+import { isEmpty } from "loadsh";
 
 const token = localStore.get("jwt");
 
 axios.defaults.xsrfCookieName = "CSRF-TOKEN";
 axios.defaults.xsrfHeaderName = "X-CSRF-Token";
-axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 axios.defaults.headers.common = {
   Authorization: `bearer ${token}`
 };
+
+axios.interceptors.request.use(config => {
+  if (isEmpty(token)) {
+    config.headers.common = {
+      Authorization: `bearer ${localStore.get("jwt")}`
+    };
+  }
+  return config;
+});
 
 const api = {
   login: (email, password) =>

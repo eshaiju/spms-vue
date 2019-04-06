@@ -11,11 +11,14 @@
             <v-form>
               <v-text-field
                 prepend-icon="person"
-                name="login"
+                name="email"
                 label="Login"
                 type="text"
                 v-model="email"
+                v-validate="'required|email'"
               ></v-text-field>
+              <i v-show="submitted && errors.has('email')" class="fa fa-warning"></i>
+              <span v-show="submitted && errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
               <v-text-field
                 id="password"
                 prepend-icon="lock"
@@ -23,7 +26,11 @@
                 label="Password"
                 type="password"
                 v-model="password"
+                v-validate="'required'"
               ></v-text-field>
+               <i v-show="submitted && errors.has('password')" class="fa fa-warning"></i>
+              <span v-show="submitted && errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
+      
             </v-form>
           </v-card-text>
           <v-card-actions>
@@ -44,16 +51,23 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      submitted: false,
     };
   },
   computed: mapGetters(["loginError"]),
   methods: {
     ...mapActions(['login']),
-    loginHandler() {
-      this.login({
-        email: this.email,
-        password: this.password
+    loginHandler(e) {
+      this.submitted = true;
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.login({
+            email: this.email,
+            password: this.password
+          });
+          return;
+        }
       });
     }
   }
