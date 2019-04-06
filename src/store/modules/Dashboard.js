@@ -1,21 +1,13 @@
 import api from "../../helpers/api";
 
 const state = {
-  statstics: null,
-  tickets: [],
-  ticket_activity_logs: []
+  statstics: null
 };
 
 const getters = {
   statstics(state) {
     return state.statstics;
-  },
-  tickets(state) {
-    return state.tickets;
-  },
-  ticket_activity_logs(state) {
-    return state.ticket_activity_logs;
-  },
+  }
 };
 
 const actions = {
@@ -49,9 +41,6 @@ const actions = {
 
 const mutations = {
   addDashboardStatistics: (state, payload) => (state.statstics = payload),
-  addTickets: (state, payload) => (state.tickets = payload),
-  addTicketActivityLogs: (state, payload) =>
-    (state.ticket_activity_logs = payload)
 };
 
 export default {

@@ -9,7 +9,7 @@ export default (to, from, next) => {
       });
     } else {
       const token = localStore.get("jwt");
-      if (!store.loggedIn && !(token === undefined)) {
+      if (!store.getters.user && !(token === undefined)) {
         store.dispatch("refetchUser", token);
       }
       next();
