@@ -64,6 +64,13 @@ const api = {
     axios
       .post(`api/v1/ticket_activity_logs/`, { ticket_activity_log })
       .then(res => Promise.resolve(res))
+      .catch(err => Promise.reject(err)),
+  updateTicketActivityLog: (ticket_activity_log, ticketActivityId) =>
+    axios
+      .put(`api/v1/ticket_activity_logs/${ticketActivityId}`, {
+        ticket_activity_log
+      })
+      .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err))
 };
 

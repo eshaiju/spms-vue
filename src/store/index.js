@@ -5,6 +5,7 @@ import loader from "./modules/loader";
 import Dashboard from "./modules/Dashboard";
 import Tickets from "./modules/Tickets";
 import TicketActivityLogs from "./modules/TicketActivityLogs";
+import TicketActivityLog from "./modules/TicketActivityLog";
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     login,
     Dashboard,
     Tickets,
-    TicketActivityLogs
+    TicketActivityLogs,
+    TicketActivityLog
   }
 });
