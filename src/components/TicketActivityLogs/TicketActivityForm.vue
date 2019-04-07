@@ -1,8 +1,13 @@
 <template>
-    <v-dialog v-model="dialog" max-width="900px">
-      <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark class="mb-2" v-on="on">Create New Activity</v-btn>
-      </template>
+  <div>
+    <v-btn
+      color="primary"
+      dark
+      @click.stop="openTicketActivityLogForm()"
+    >
+      Create New Activity
+    </v-btn>
+    <v-dialog v-model="ticketActivityLogForm" max-width="900px">
       <v-card>
         <v-card-title>
           <span class="headline">{{ formTitle }}</span>
@@ -80,6 +85,7 @@
         </form>
       </v-card>
     </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -89,7 +95,6 @@ import { isEmpty } from 'lodash'
 export default {
   data() {
     return{
-      dialog: false,
       menu2: false,
       submitted: false,
       ticketActivityLog: {
@@ -103,26 +108,27 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["user", "tickets"]),
+    ...mapGetters(["user", "tickets", "ticket_activity_log", "ticketActivityLogForm"]),
     formTitle() {
       return this.ticketActivityLog.data.id === null ? 'Create New Activity' : 'Edit Activity'
     },
     items() {
       if(isEmpty(this.tickets)) return([]);
       return this.tickets.data.map(ticket => {
-        return { text: ticket.attributes.title, value: ticket.id}
+        return { text: ticket.attributes.ticket_no, value: parseInt(ticket.id, 10)}
       })
     }
   },
   watch: {
-    dialog (val) {
-      val || this.close()
+    ticket_activity_log (val) {
+      this.ticketActivityLog = this.ticket_activity_log;
     }
   },
   methods: {
-    ...mapActions(['saveTicketActivity']),
+    ...mapActions(['saveTicketActivity', 'updateTicketActivity', 'closeTicketActivityLogForm', "openTicketActivityLogForm"]),
     close() {
-      this.dialog = false,
+      this.closeTicketActivityLogForm(),
+      this.submitted = false,
       this.ticketActivityLog = {
         data: {
           id: null,
@@ -140,16 +146,16 @@ export default {
             ...this.ticketActivityLog.data.attributes,
             user_id: this.user.data.id
           }
-          if(isEmpty(this.ticketActivityLog.data.id)){
+          if(isEmpty(ticketActivityInput.id)){
             this.saveTicketActivity(ticketActivityInput)
           } else {
-            this.updateTicketActivity(ticketActivityInput)
+            this.updateTicketActivity(ticketActivityInput, ticketActivityInput.id)
           } 
           this.close();
         }
       });
     }
-  },
+  }
 }
 </script>
 
