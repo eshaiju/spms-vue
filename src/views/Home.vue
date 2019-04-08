@@ -1,5 +1,6 @@
 <template>
   <v-container fluid grid-list-md text-xs-center>
+    <TicketActivityForm />
     <v-layout row wrap>
       <DashboardStatistics 
         v-bind:statstics="statstics"
@@ -16,6 +17,7 @@
 <script>
   import Calander from '../components/Home/Calander';
   import DashboardStatistics from '../components/Home/DashboardStatistics';
+  import TicketActivityForm from '../components/TicketActivityLogs/TicketActivityForm';
 
   import { mapGetters, mapActions } from "vuex";
 
@@ -23,7 +25,8 @@
     name: "home",
     components: {
       Calander,
-      DashboardStatistics
+      DashboardStatistics,
+      TicketActivityForm
     },
     computed: {
       ...mapGetters(['statstics', 'tickets', 'ticket_activity_logs'])
