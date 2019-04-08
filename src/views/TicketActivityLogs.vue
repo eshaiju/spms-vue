@@ -1,6 +1,13 @@
 <template>
   <div>
     <h2>Ticket Activities</h2><br/>
+    <v-btn
+      color="primary"
+      dark
+      @click.stop="openTicketActivityLogForm()"
+    >
+      Create New Activity
+    </v-btn>
     <TicketActivityForm />
     <TicketActivityList :ticket_activity_logs="ticket_activity_logs.data" />
   </div>
@@ -21,7 +28,7 @@ export default {
     ...mapGetters(["user", "ticket_activity_logs"]),
   },
   methods: {
-    ...mapActions(['fetchTicketActivityLogs', 'fetchTickets']),
+    ...mapActions(['fetchTicketActivityLogs', 'fetchTickets', "openTicketActivityLogForm"]),
   },
   created() {
     if(this.user) {

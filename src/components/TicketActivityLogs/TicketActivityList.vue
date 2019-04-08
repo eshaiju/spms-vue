@@ -11,20 +11,20 @@
       <td>{{ props.item.attributes.ticket_no }}</td>
       <td>{{ props.item.attributes.status }}</td>
       <td class="justify-center layout px-0">
-          <v-icon
-            small
-            class="mr-2"
-            @click="editItem(props.item)"
-          >
-            edit
-          </v-icon>
-          <v-icon
-            small
-            @click="deleteItem(props.item.id)"
-          >
-            delete
-          </v-icon>
-        </td>
+        <v-icon
+          small
+          class="mr-2"
+          @click="editItem(props.item)"
+        >
+          edit
+        </v-icon>
+        <v-icon
+          small
+          @click="deleteItem(props.item.id)"
+        >
+          delete
+        </v-icon>
+      </td>
     </template>
   </v-data-table>
 </template>

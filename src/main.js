@@ -6,14 +6,13 @@ import router from "./router";
 import requireAuth from "./helpers/requireAuth";
 import store from "./store";
 import interceptorsSetup from "./helpers/interceptors";
-import FullCalendar from "vue-full-calendar";
-import "fullcalendar/dist/fullcalendar.css";
 import "./assets/css/style.css";
+import fullCalendar from "vue-fullcalendar";
+Vue.component("full-calendar", fullCalendar);
 
 Vue.config.productionTip = false;
 router.beforeEach(requireAuth);
 interceptorsSetup();
-Vue.use(FullCalendar);
 Vue.use(VeeValidate);
 
 new Vue({

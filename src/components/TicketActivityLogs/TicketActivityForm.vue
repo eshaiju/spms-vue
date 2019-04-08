@@ -1,12 +1,5 @@
 <template>
   <div>
-    <v-btn
-      color="primary"
-      dark
-      @click.stop="openTicketActivityLogForm()"
-    >
-      Create New Activity
-    </v-btn>
     <v-dialog v-model="ticketActivityLogForm" max-width="900px">
       <v-card>
         <v-card-title>
