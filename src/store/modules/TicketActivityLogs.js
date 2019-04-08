@@ -1,5 +1,4 @@
 import api from "../../helpers/api";
-import { async } from "q";
 
 const state = {
   ticket_activity_logs: []
@@ -26,6 +25,7 @@ const actions = {
   async saveTicketActivity({ commit }, ticket_activity_log) {
     await api.createTicketActivityLog(ticket_activity_log).then(({ data }) => {
       const { ticket_activity_log } = data;
+      debugger;
       commit("pushToTicketActivityLogs", ticket_activity_log);
     });
   },

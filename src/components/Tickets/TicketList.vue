@@ -16,7 +16,7 @@
           <v-icon
             small
             class="mr-2"
-            @click="editItem(props.item.id)"
+            @click="editItem(props.item)"
           >
             edit
           </v-icon>
@@ -52,8 +52,10 @@
       }
     },
     methods: {
-      ...mapActions(['deleteTicket']),
-      editItem (id) {
+      ...mapActions(['deleteTicket', "addTicket", "openTicketForm"]),
+      editItem (item) {
+        this.addTicket({ data: item})
+        this.openTicketForm();
       },
       deleteItem (id) {
         confirm('Are you sure you want to delete this ticket?') && this.deleteTicket(id)

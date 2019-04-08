@@ -83,7 +83,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { isEmpty } from 'lodash'
+import { isEmpty } from 'lodash';
 
 export default {
   data() {
@@ -138,7 +138,8 @@ export default {
         if (result) {
           const ticketActivityInput = {
             ...this.ticketActivityLog.data.attributes,
-            user_id: this.user.data.id
+            user_id: this.user.data.id,
+            id: this.ticketActivityLog.data.id
           }
           if(isEmpty(ticketActivityInput.id)){
             this.saveTicketActivity(ticketActivityInput)

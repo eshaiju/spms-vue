@@ -50,6 +50,16 @@ const api = {
       .delete(`api/v1/tickets/${id}`)
       .then(res => Promise.resolve(res))
       .catch(err => Promise.reject(err)),
+  createTicket: ticket =>
+    axios
+      .post(`api/v1/tickets/`, { ticket })
+      .then(res => Promise.resolve(res))
+      .catch(err => Promise.reject(err)),
+  updateTicket: (ticket, ticketId) =>
+    axios
+      .put(`api/v1/tickets/${ticketId}`, { ticket })
+      .then(res => Promise.resolve(res))
+      .catch(err => Promise.reject(err)),
   ticketActivityLogs: user =>
     axios
       .get("api/v1/ticket_activity_logs", { params: { user_id: user.id } })

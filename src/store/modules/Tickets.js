@@ -21,6 +21,18 @@ const actions = {
     await api.deleteTicket(id).then(() => {
       commit("removeTicket", id);
     });
+  },
+  async saveTicket({ commit }, ticket) {
+    await api.createTicket(ticket).then(({ data }) => {
+      const { ticket } = data;
+      commit("pushToTickets", ticket);
+    });
+  },
+  async updateTicket({ commit }, ticket) {
+    await api.updateTicket(ticket, ticket.id).then(({ data }) => {
+      const { ticket } = data;
+      commit("updateTickets", ticket);
+    });
   }
 };
 
@@ -29,6 +41,19 @@ const mutations = {
   removeTicket: (state, id) => {
     const newState = state.tickets.data.filter(val => val.id !== id);
     state.tickets = { data: [...newState] };
+  },
+  pushToTickets: (state, payload) => {
+    state.tickets = {
+      data: [payload.data, ...state.tickets.data]
+    };
+  },
+  updateTickets: (state, payload) => {
+    let index = state.tickets.data.indexOf(
+      find(state.tickets.data, ["id", payload.data.id])
+    );
+    if (index >= 0) {
+      state.tickets.data.splice(index, 1, payload.data);
+    }
   }
 };
 
